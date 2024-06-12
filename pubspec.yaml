@@ -24,16 +24,16 @@ dependencies:
   share_plus: ^9.0.0
   loading_plus: ^2.0.2
   awesome_notifications: ^0.9.3+1
-  firebase_messaging: ^14.9.4
+  firebase_messaging: ^15.0.1
   package_info_plus: ^8.0.0
   internet_connection_checker: ^1.0.0+1
   upgrader: ^10.3.0
   in_app_review: ^2.0.9
   encrypt: ^5.0.3
   flutter_svg: ^2.0.10+1
-  url_launcher: ^6.2.6
-  firebase_crashlytics: ^3.5.7
-  firebase_analytics: ^10.10.7
+  url_launcher: ^6.3.0
+  firebase_crashlytics: ^4.0.1
+  firebase_analytics: ^11.0.1
   #  rive: ^0.13.3
   #  cached_network_image: ^3.3.1
   #  transparent_image: ^2.0.1
@@ -50,6 +50,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
   import_sorter: ^4.6.0
+  rename: ^3.0.2
   ########## import_sorter ##########
 import_sorter:
   emojis: false
@@ -57,6 +58,15 @@ import_sorter:
 
 # dart run import_sorter:main
 ########## import_sorter ##########
+
+########## rename ##########
+#  dart pub global activate rename
+#  rename getAppName --targets ios,android,macos,windows,linux
+#  rename setAppName --targets ios,android,macos,windows,linux --value "App Name"
+#  rename getBundleId --targets ios,android,macos,windows,linux
+#  rename setBundleId --targets ios,android,macos,windows,linux --value "com.example.startUpWorkspace"
+
+########## rename ##########
 
 flutter_launcher_icons:
   android: "launcher_icon"
