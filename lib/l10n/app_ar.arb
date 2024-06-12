@@ -17,6 +17,7 @@
   "goToAppEnableLocationIos": "اذهب إلى الإعدادات > الخصوصية والأمان > خدمة الموقع > 'App Name'.\nوفعًل خدمة الموقع.",
   "goToSettingsEnableLocation": "اذهب إلى الإعدادات وفعًل خدمة الموقع.",
   "haveAnAccount": "لديك حساب؟",
+  "home": "الرئيسية",
   "invalidEmail": "البريد الالكتروني غير صالح",
   "invalidPhoneNumber": "رقم الهاتف غير صالح",
   "inviteFriend": "دعوة صديق",

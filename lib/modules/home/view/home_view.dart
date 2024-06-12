@@ -9,13 +9,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const UpgradeDialog(
+    return UpgradeDialog(
       child: Scaffold(
         appBar: MainAppBar(
-          title: 'Home',
+          title: localizations.home,
           hasDrawer: true,
         ),
-        drawer: DrawerHome(),
+        drawer: const DrawerHome(),
       ),
     );
   }

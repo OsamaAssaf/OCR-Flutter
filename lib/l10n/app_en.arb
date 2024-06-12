@@ -17,6 +17,7 @@
   "goToAppEnableLocationIos": "Go to Settings > Privacy & Security > Location Service > 'App Name'.\nAnd Enable Location Service.",
   "goToSettingsEnableLocation": "Go to settings and enable location service.",
   "haveAnAccount": "Have an account?",
+  "home": "Home",
   "invalidEmail": "Invalid email",
   "invalidPhoneNumber": "Invalid phone number",
   "inviteFriend": "Invite friend",
