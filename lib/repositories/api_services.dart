@@ -6,13 +6,17 @@ class ApiServices {
   ApiServices._();
 
   static final _instance = ApiServices._();
+
   factory ApiServices() => _instance;
 
-  Future<http.Response> get(String endPoint) async {
+  Future<http.Response> get({
+    required String endPoint,
+  }) async {
     final String url = '${DotenvManager.apiPath}/$endPoint';
     final http.Response response = await http
         .get(
       Uri.parse(url),
+      headers: _getHeaders(),
     )
         .timeout(
       ExceptionManager().timedOutDuration,
@@ -33,6 +37,7 @@ class ApiServices {
         .post(
       Uri.parse(url),
       body: body,
+      headers: _getHeaders(),
     )
         .timeout(
       ExceptionManager().timedOutDuration,
@@ -46,13 +51,14 @@ class ApiServices {
 
   Future<http.Response> put({
     required String endPoint,
-    required body,
+    required String body,
   }) async {
     final String url = '${DotenvManager.apiPath}/$endPoint';
     final http.Response response = await http
         .put(
       Uri.parse(url),
       body: body,
+      headers: _getHeaders(),
     )
         .timeout(
       ExceptionManager().timedOutDuration,
@@ -64,11 +70,14 @@ class ApiServices {
     return response;
   }
 
-  Future<http.Response> delete(String endPoint) async {
+  Future<http.Response> delete({
+    required String endPoint,
+  }) async {
     final String url = '${DotenvManager.apiPath}/$endPoint';
     final http.Response response = await http
         .delete(
       Uri.parse(url),
+      headers: _getHeaders(),
     )
         .timeout(
       ExceptionManager().timedOutDuration,
@@ -78,5 +87,18 @@ class ApiServices {
     );
     ExceptionManager().checkTimedOut(response.statusCode);
     return response;
+  }
+
+  static Map<String, String> _getHeaders() {
+    // final UserModel? userModel = Globals().userModel;
+    final Map<String, String> headers = {
+      'Accept-Language': localizations.localeName,
+      'Content-Type': 'application/json; charset=UTF-8',
+      'accept': 'application/json; charset=UTF-8',
+    };
+    // if (userModel?.jwtToken != null) {
+    //   headers['Authorization'] = 'Bearer ${userModel!.jwtToken!}';
+    // }
+    return headers;
   }
 }
