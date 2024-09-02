@@ -17,7 +17,7 @@ class ConstantsManager {
   static const String termsAndConditionsUrl = 'https://google.com';
 }
 
-class DotenvManager {
+mixin DotenvManager {
   static final String languagePrefsKey = dotenv.env['LANGUAGE_PREFS_KEY']!;
   static final String themeModePrefsKey = dotenv.env['THEME_MODE_PREFS_KEY']!;
   static final String isDarkThemePrefsKey = dotenv.env['IS_DARK_THEME_PREFS_KEY']!;

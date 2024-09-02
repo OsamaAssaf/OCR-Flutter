@@ -74,7 +74,7 @@ class ScaleText extends StatelessWidget {
   }
 }
 
-class ScaleSize {
+mixin ScaleSize {
   static double textScaleFactor(BuildContext context, {double maxTextScaleFactor = 2}) {
     final width = MediaQuery.of(context).size.width;
     final double val = (width / 1400) * maxTextScaleFactor;

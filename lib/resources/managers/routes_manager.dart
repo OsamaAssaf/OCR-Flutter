@@ -10,7 +10,7 @@ class Routes {
   static const String settingsRoute = '/SettingsView';
 }
 
-class RouteGenerator {
+mixin RouteGenerator {
   static List<GetPage> getPages() {
     return <GetPage>[
       GetPage(

@@ -208,7 +208,7 @@ class Components {
     DateTime? firstDate,
     DateTime? lastDate,
   }) async {
-    DateTime? dateTime = await showDatePicker(
+    final DateTime? dateTime = await showDatePicker(
       context: context,
       initialDate: initialDate ?? DateTime.now(),
       firstDate: firstDate ?? DateTime.now(),

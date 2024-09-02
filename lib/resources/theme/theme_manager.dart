@@ -1,6 +1,6 @@
 import '../helpers/all_imports.dart';
 
-class ThemeManager {
+mixin ThemeManager {
   static ThemeData getLightTheme() {
     return ThemeData(
       useMaterial3: true,

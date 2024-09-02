@@ -1,6 +1,6 @@
 import '../helpers/all_imports.dart';
 
-class ColorsManager {
+mixin ColorsManager {
   static Color primary = const Color(0xffED9728);
   //* Light Theme Colors
 

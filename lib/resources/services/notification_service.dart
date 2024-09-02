@@ -42,7 +42,7 @@ class NotificationService {
   }
 
   Future<void> _checkPermission() async {
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (isAllowed == false) {
       AwesomeNotifications().requestPermissionToSendNotifications();
     }
@@ -72,10 +72,10 @@ class NotificationService {
 
   Future<void> _initFirebaseMessaging() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    Stream<RemoteMessage> onMessageOpenedAppStream = FirebaseMessaging.onMessageOpenedApp;
+    final Stream<RemoteMessage> onMessageOpenedAppStream = FirebaseMessaging.onMessageOpenedApp;
     onMessageOpenedAppStream.listen((RemoteMessage event) async {});
 
-    Stream<RemoteMessage> onMessageStream = FirebaseMessaging.onMessage;
+    final Stream<RemoteMessage> onMessageStream = FirebaseMessaging.onMessage;
     onMessageStream.listen(
       (RemoteMessage event) async {
         showNotification(
@@ -90,7 +90,7 @@ class NotificationService {
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
   Future<RemoteMessage?> getInitialMessage() async {
-    RemoteMessage? message = await FirebaseMessaging.instance.getInitialMessage();
+    final RemoteMessage? message = await FirebaseMessaging.instance.getInitialMessage();
     return message;
   }
 
