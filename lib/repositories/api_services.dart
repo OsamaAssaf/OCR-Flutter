@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-import '../resources/helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class ApiServices {
   ApiServices._();

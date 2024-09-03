@@ -1,4 +1,4 @@
-import '../helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 mixin ColorsManager {
   static Color primary = const Color(0xffED9728);

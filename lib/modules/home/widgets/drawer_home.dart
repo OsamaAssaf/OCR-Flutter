@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../../../resources/helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class DrawerHome extends StatelessWidget {
   const DrawerHome({super.key});

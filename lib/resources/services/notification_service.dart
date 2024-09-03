@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class NotificationService {
   NotificationService._();

@@ -1,4 +1,4 @@
-import '../helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class UpgradeDialog extends StatelessWidget {
   const UpgradeDialog({
@@ -23,9 +23,7 @@ class UpgradeDialog extends StatelessWidget {
       showIgnore: false,
       showLater: false,
       barrierDismissible: false,
-      dialogStyle: Platform.isIOS
-          ? UpgradeDialogStyle.cupertino
-          : UpgradeDialogStyle.material,
+      dialogStyle: Platform.isIOS ? UpgradeDialogStyle.cupertino : UpgradeDialogStyle.material,
       child: child,
     );
   }

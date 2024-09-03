@@ -1,4 +1,4 @@
-import '../helpers/all_imports.dart';
+import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class Routes {
   static const String unDefinedRoute = '/NotFoundView';
