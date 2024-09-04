@@ -41,7 +41,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      NotificationService().initListenersAndPermission();
+      /// TODO: remove the comment when config Firebase
+      // NotificationService().initListenersAndPermission();
     });
     super.initState();
   }

@@ -14,6 +14,8 @@ class MasterFunctionsService {
       [
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
       ],
     );
   }
