@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:start_up_workspace/resources/helpers/all_imports.dart';
 
 class NotificationService {
@@ -9,84 +7,6 @@ class NotificationService {
 
   factory NotificationService() => _instance;
 
-  Future<void> _initAwesomeNotifications() async {
-    await AwesomeNotifications().initialize(
-      'resource://drawable/app_icon',
-      [
-        NotificationChannel(
-          channelGroupKey: 'notification_channel',
-          channelKey: 'notification_channel_key',
-          channelName: 'Notification Channel',
-          channelDescription: 'Notification channel for receive notification.',
-          defaultColor: ColorsManager.primary,
-          ledColor: ColorsManager.white,
-        ),
-      ],
-      channelGroups: [
-        NotificationChannelGroup(
-          channelGroupKey: 'notification_channel',
-          channelGroupName: 'Notification Channel',
-        ),
-      ],
-      debug: false,
-    );
-  }
-
-  Future<void> _setListeners() async {
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: _onActionReceivedMethod,
-      onNotificationCreatedMethod: (_) async {},
-      onNotificationDisplayedMethod: (_) async {},
-      onDismissActionReceivedMethod: (_) async {},
-    );
-  }
-
-  Future<void> _checkPermission() async {
-    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-    if (isAllowed == false) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
-    }
-  }
-
-  @pragma('vm:entry-point')
-  static Future<void> _onActionReceivedMethod(ReceivedAction receivedAction) async {}
-
-  Future<void> showNotification({
-    required String title,
-    required String body,
-    Map<String, dynamic>? payload,
-  }) async {
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        channelKey: 'notification_channel_key',
-        groupKey: 'notification_channel',
-        id: Random().nextInt(10000),
-        title: title,
-        body: body,
-        actionType: ActionType.Default,
-        bigPicture: 'asset://assets/icons/app_icon.png',
-        fullScreenIntent: false,
-      ),
-    );
-  }
-
-  Future<void> _initFirebaseMessaging() async {
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    final Stream<RemoteMessage> onMessageOpenedAppStream = FirebaseMessaging.onMessageOpenedApp;
-    onMessageOpenedAppStream.listen((RemoteMessage event) async {});
-
-    final Stream<RemoteMessage> onMessageStream = FirebaseMessaging.onMessage;
-    onMessageStream.listen(
-      (RemoteMessage event) async {
-        showNotification(
-          title: event.notification!.title!,
-          body: event.notification!.body!,
-          payload: event.data,
-        );
-      },
-    );
-  }
-
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
   Future<RemoteMessage?> getInitialMessage() async {
@@ -95,12 +15,151 @@ class NotificationService {
   }
 
   Future<void> initNotifications() async {
-    await _initAwesomeNotifications();
     await _initFirebaseMessaging();
+    await _initLocalNotifications();
   }
 
   Future<void> initListenersAndPermission() async {
-    _setListeners();
-    _checkPermission();
+    _requestPermissions();
+  }
+
+  Future<String?> getNotificationToken() async {
+    String? notificationToken;
+    try {
+      notificationToken = await FirebaseMessaging.instance.getToken();
+    } catch (_) {}
+    return notificationToken;
+  }
+
+  @pragma('vm:entry-point')
+  void notificationTapBackground(NotificationResponse notificationResponse) {}
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  Future<void> _initLocalNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+    final DarwinInitializationSettings initializationSettingsDarwin =
+        DarwinInitializationSettings();
+    final LinuxInitializationSettings initializationSettingsLinux = LinuxInitializationSettings(
+      defaultActionName: 'Open notification',
+    );
+    final InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin,
+      macOS: initializationSettingsDarwin,
+      linux: initializationSettingsLinux,
+    );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
+    );
+    await createNotificationChannels();
+  }
+
+  Future<void> createNotificationChannels() async {
+    const AndroidNotificationChannel androidNotificationChannel = AndroidNotificationChannel(
+      'default_notification_channel_id',
+      'default notification channel',
+      importance: Importance.max,
+    );
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(androidNotificationChannel);
+  }
+
+  void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {}
+
+  Future<void> _requestPermissions() async {
+    if (Platform.isIOS || Platform.isMacOS) {
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+          ?.requestPermissions(
+            alert: true,
+            badge: true,
+            sound: true,
+          );
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()
+          ?.requestPermissions(
+            alert: true,
+            badge: true,
+            sound: true,
+          );
+    } else if (Platform.isAndroid) {
+      flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestNotificationsPermission();
+    }
+  }
+
+  void onDidReceiveLocalNotification(int id, String? title, String? body, String? payload) async {
+    _showNotification(
+      title: '$title',
+      body: '$body',
+      payload: payload,
+    );
+  }
+
+  Future<void> _initFirebaseMessaging() async {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: true,
+      sound: true,
+    );
+    FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    final Stream<RemoteMessage> onMessageOpenedAppStream = FirebaseMessaging.onMessageOpenedApp;
+    onMessageOpenedAppStream.listen((RemoteMessage event) async {});
+
+    final Stream<RemoteMessage> onMessageStream = FirebaseMessaging.onMessage;
+    onMessageStream.listen(
+      (RemoteMessage event) async {
+        _showNotification(
+          title: event.notification!.title!,
+          body: event.notification!.body!,
+          payload: event.data.toString(),
+        );
+      },
+    );
+  }
+
+  Future<void> _showNotification({
+    required String title,
+    required String body,
+    String? payload,
+  }) async {
+    const AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
+      'default_notification_channel_id',
+      'default notification channel',
+      channelDescription: 'default notification channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const DarwinNotificationDetails darwinNotificationDetails = DarwinNotificationDetails();
+    final LinuxNotificationDetails linuxPlatformChannelSpecifics = LinuxNotificationDetails();
+    final NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+      iOS: darwinNotificationDetails,
+      macOS: darwinNotificationDetails,
+      linux: linuxPlatformChannelSpecifics,
+    );
+    await flutterLocalNotificationsPlugin.show(
+      _createUniqueId(),
+      title,
+      body,
+      payload: payload,
+      notificationDetails,
+    );
+  }
+
+  int _createUniqueId() {
+    return DateTime.now().millisecondsSinceEpoch.remainder(100000);
   }
 }

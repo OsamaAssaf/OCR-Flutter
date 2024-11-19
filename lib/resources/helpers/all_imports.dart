@@ -4,12 +4,12 @@ export 'dart:io' hide HeaderValue;
 
 export 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 export 'package:flutter/material.dart';
-export 'package:flutter/scheduler.dart';
+export 'package:flutter/scheduler.dart' hide Priority;
 export 'package:flutter/services.dart';
 export 'package:start_up_workspace/resources/mixins/responsive_design_breakpoints.dart';
 export 'package:start_up_workspace/resources/widgets/responsive_design.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-export 'package:awesome_notifications/awesome_notifications.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:flutter_gen/gen_l10n/app_localizations.dart';
