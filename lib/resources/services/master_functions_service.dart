@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class MasterFunctionsService {
   MasterFunctionsService._();
@@ -33,7 +33,7 @@ class MasterFunctionsService {
     } else if (themeMode == ThemeMode.dark) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
-          statusBarColor: ColorsManager.darkBackground,
+          statusBarColor: ColorsManager.background,
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.light,
         ),
@@ -44,7 +44,7 @@ class MasterFunctionsService {
       if (isDarkMode) {
         SystemChrome.setSystemUIOverlayStyle(
           SystemUiOverlayStyle(
-            statusBarColor: ColorsManager.darkBackground,
+            statusBarColor: ColorsManager.background,
             statusBarBrightness: Brightness.light,
             statusBarIconBrightness: Brightness.light,
           ),

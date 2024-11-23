@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class Routes {
   static const String unDefinedRoute = '/NotFoundView';
@@ -8,6 +8,7 @@ class Routes {
   static const String homeRoute = '/HomeView';
   static const String connectionErrorRoute = '/ConnectionErrorView';
   static const String settingsRoute = '/SettingsView';
+  static const String ocrScannerRoute = '/OcrScannerView';
 }
 
 mixin RouteGenerator {
@@ -41,6 +42,11 @@ mixin RouteGenerator {
         name: Routes.settingsRoute,
         page: () => SettingsView(),
         binding: SettingsBinding(),
+      ),
+      GetPage(
+        name: Routes.ocrScannerRoute,
+        page: () => OcrScannerView(),
+        binding: OcrScannerBinding(),
       ),
     ];
   }

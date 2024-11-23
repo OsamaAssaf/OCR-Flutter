@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class SplashController extends GetxController {
   @override
@@ -12,7 +12,7 @@ class SplashController extends GetxController {
   Future<void> checkConnection() async {
     final bool result = await Components().checkConnection();
     if (result == true) {
-      Get.offAllNamed(Routes.authRoute);
+      Get.offAllNamed(Routes.navigationRoute);
     } else {
       Get.offAllNamed(Routes.connectionErrorRoute);
     }

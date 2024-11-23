@@ -11,6 +11,7 @@
   "connectionFailedConnectServer": "Sorry, the connection has failed to connect to the server.",
   "doNotHaveAnAccount": "Don't have an account?",
   "email": "Email",
+  "ocrScanner": "OCR Scanner",
   "feedback": "Feedback",
   "fieldRequired": "Field required",
   "goToAppEnableLocationAndroid": "Go to Settings > Apps > 'App Name' > Permissions.\nAnd Enable Location Service.",

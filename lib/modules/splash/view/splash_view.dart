@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class SplashView extends StatelessWidget {
   SplashView({super.key});

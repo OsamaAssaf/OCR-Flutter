@@ -12,6 +12,7 @@
   "doNotHaveAnAccount": "ليس لديك حساب؟",
   "email": "البريد الالكتروني",
   "feedback": "ملاحظات",
+  "ocrScanner": "قارئ OCR",
   "fieldRequired": "الحقل مطلوب",
   "goToAppEnableLocationAndroid": "اذهب إلى الإعدادات > التطبيقات > 'App Name' > الأذونات.\nوفعًل خدمة الموقع.",
   "goToAppEnableLocationIos": "اذهب إلى الإعدادات > الخصوصية والأمان > خدمة الموقع > 'App Name'.\nوفعًل خدمة الموقع.",

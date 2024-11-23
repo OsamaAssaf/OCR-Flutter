@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class CustomThemeData extends ThemeExtension<CustomThemeData> {
   CustomThemeData({
@@ -11,9 +11,9 @@ class CustomThemeData extends ThemeExtension<CustomThemeData> {
     required this.grey,
     required this.lightGrey,
     required this.darkGrey,
-    required this.textField,
-    // required this.pink,
-    // required this.blue,
+    required this.textFieldBackground,
+    required this.textColor,
+    required this.amber,
   });
 
   final Color white;
@@ -25,7 +25,9 @@ class CustomThemeData extends ThemeExtension<CustomThemeData> {
   final Color grey;
   final Color lightGrey;
   final Color darkGrey;
-  final Color textField;
+  final Color textFieldBackground;
+  final Color textColor;
+  final Color amber;
 
   // final Color pink;
   // final Color blue;
@@ -42,9 +44,9 @@ class CustomThemeData extends ThemeExtension<CustomThemeData> {
       grey: grey,
       lightGrey: lightGrey,
       darkGrey: darkGrey,
-      textField: textField,
-      // pink: pink,
-      // blue: blue,
+      textFieldBackground: textFieldBackground,
+      textColor: textColor,
+      amber: amber,
     );
   }
 
@@ -63,9 +65,9 @@ class CustomThemeData extends ThemeExtension<CustomThemeData> {
       grey: grey,
       lightGrey: lightGrey,
       darkGrey: darkGrey,
-      textField: textField,
-      // pink: pink,
-      // blue: blue,
+      textFieldBackground: textFieldBackground,
+      textColor: textColor,
+      amber: amber,
     );
   }
 }

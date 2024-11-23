@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class Components {
   Components._();
@@ -248,6 +248,63 @@ class Components {
 //   }
 //   return '$countryCode$phoneWithoutZero';
 // }
+
+  Future<void> bottomSheet({
+    required BuildContext context,
+    required Widget child,
+    bool showCancel = true,
+    List<CustomBottomSheetButton>? actions,
+  }) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext ctx) {
+        return Theme(
+          data: theme.copyWith(
+            bottomSheetTheme: const BottomSheetThemeData(
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            bottomSheet: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surface,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: child,
+                    ),
+                    const SizedBox(height: 16.0),
+                    if (actions != null) ...actions,
+                    if (showCancel)
+                      CustomBottomSheetButton(
+                        title: localizations.cancel,
+                        titleColor: customTheme.error,
+                        onTap: () {
+                          Get.back();
+                        },
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
 enum SnackBarStatus {

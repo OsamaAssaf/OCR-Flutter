@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class NavigationController extends GetxController {
   final List<Widget> pages = [
@@ -17,5 +17,11 @@ class NavigationController extends GetxController {
 
   Widget getPage() {
     return pages.elementAt(selectedNavIndex);
+  }
+
+  String? text;
+  set setText(String? value) {
+    text = value;
+    update();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:encrypt/encrypt.dart' as en;
 
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class EncryptionService {
   EncryptionService._();

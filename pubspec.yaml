@@ -1,4 +1,4 @@
-name: start_up_workspace
+name: ocr
 description: A new Flutter project.
 
 publish_to: "none"
@@ -34,6 +34,7 @@ dependencies:
   firebase_crashlytics: ^4.1.5
   firebase_analytics: ^11.3.5
   flutter_local_notifications: ^18.0.1
+  flutter_scalable_ocr: ^2.2.0
   #  rive: ^0.13.3
   #  cached_network_image: ^3.3.1
   #  transparent_image: ^2.0.1

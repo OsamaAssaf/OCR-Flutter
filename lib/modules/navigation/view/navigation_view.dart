@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 class NavigationView extends StatelessWidget {
   const NavigationView({super.key});
@@ -6,17 +6,21 @@ class NavigationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UpgradeDialog(
-      child: GetBuilder<NavigationController>(builder: (controller) {
-        return Scaffold(
-          body: controller.getPage(),
-          // bottomNavigationBar: BottomNavBar(
-          //   onTap: (int index) {
-          //     controller.changeIndex(index);
-          //   },
-          //   selectedNavIndex: controller.selectedNavIndex,
-          // ),
-        );
-      }),
+      child: GetBuilder<NavigationController>(
+        builder: (NavigationController controller) {
+          return Scaffold(
+            // body: controller.getPage(),
+            body: Center(
+              child: ScaleText('${controller.text}'),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Get.toNamed(Routes.ocrScannerRoute)!.then((value) {});
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:ocr/resources/helpers/all_imports.dart';
 
-class AuthBinding extends Bindings {
+class OcrScannerBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(
-      () => AuthController(),
+      () => OcrScannerController(),
     );
   }
 }

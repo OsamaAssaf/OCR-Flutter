@@ -1,4 +1,4 @@
-import 'package:start_up_workspace/resources/helpers/all_imports.dart';
+import 'package:ocr/resources/helpers/all_imports.dart';
 
 mixin ThemeManager {
   static ThemeData getLightTheme() {
@@ -11,6 +11,12 @@ mixin ThemeManager {
         primary: ColorsManager.primary,
         secondary: ColorsManager.secondary,
         brightness: Brightness.light,
+        tertiary: ColorsManager.accent,
+      ),
+      canvasColor: ColorsManager.background,
+      dividerColor: ColorsManager.divider,
+      dividerTheme: const DividerThemeData(
+        color: ColorsManager.divider,
       ),
       scaffoldBackgroundColor: ColorsManager.background,
       appBarTheme: AppBarTheme(
@@ -32,6 +38,7 @@ mixin ThemeManager {
       cardColor: ColorsManager.background,
       iconTheme: IconThemeData(
         color: ColorsManager.primary,
+        size: 24.0,
       ),
       cardTheme: CardTheme(
         color: ColorsManager.background,
@@ -67,30 +74,56 @@ mixin ThemeManager {
           color: ColorsManager.lightGrey,
         ),
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: ColorsManager.background,
+        labelTextStyle: WidgetStateProperty.all<TextStyle>(
+          const TextStyle(
+            fontSize: 10.0,
+          ),
+        ),
+      ),
+      switchTheme: SwitchThemeData(
+        trackColor: WidgetStateProperty.resolveWith((Set<WidgetState> widgetState) {
+          if (widgetState.isEmpty) return customTheme.grey;
+          return null;
+        }),
+      ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: ColorsManager.background,
+        dialBackgroundColor: ColorsManager.lightGrey,
+        entryModeIconColor: ColorsManager.grey,
+      ),
+      datePickerTheme: DatePickerThemeData(
+        backgroundColor: ColorsManager.background,
+        headerBackgroundColor: ColorsManager.primary,
+      ),
       textTheme: TextTheme(
         displayLarge: TextStyle(
-          fontSize: 40.0,
+          fontSize: 30.0,
           color: ColorsManager.primary,
           fontWeight: FontWeight.w400,
         ),
         displayMedium: TextStyle(
-          fontSize: 16.0,
+          fontSize: 28.0,
           color: ColorsManager.primary,
-          fontWeight: FontWeight.w400,
+        ),
+        displaySmall: TextStyle(
+          fontSize: 16.0,
+          color: ColorsManager.textColor,
         ),
         titleLarge: TextStyle(
           fontSize: 14.0,
-          color: ColorsManager.primary,
-          fontWeight: FontWeight.bold,
+          color: ColorsManager.textColor,
         ),
         titleMedium: TextStyle(
           fontSize: 12.0,
-          color: ColorsManager.black,
+          color: ColorsManager.textColor,
           fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(
           fontSize: 10.0,
-          color: ColorsManager.grey,
+          color: ColorsManager.textColor,
           fontWeight: FontWeight.w400,
         ),
       ),
@@ -106,9 +139,9 @@ mixin ThemeManager {
           grey: ColorsManager.grey,
           lightGrey: ColorsManager.lightGrey,
           darkGrey: ColorsManager.darkGrey,
-          textField: ColorsManager.textField,
-          // pink: ColorsManager.pink,
-          // blue: ColorsManager.blue,
+          textFieldBackground: ColorsManager.textFieldBackground,
+          textColor: ColorsManager.textColor,
+          amber: ColorsManager.amber,
         )
       ],
     );
